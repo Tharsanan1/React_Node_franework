@@ -1,10 +1,97 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Express React Webpack Babel Setup</title>
-  </head>
-  <body>
-    <div id = "app"></div>
-    <script src = "./bundle.js"></script>
-  </body>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<script>
+function myFunction() {
+  var name = document.getElementById("name").value;
+  var director = document.getElementById("director").value;
+  var genre = document.getElementById("genre").value;
+  var rowString = document.getElementById("rows").value;
+  var year = document.getElementById("year").value;
+  if(document.getElementById('phrasal').checked){
+    var query = "";
+    if(director == ""){
+    }
+    else{
+      query+="directed_by:\"" + director + "\"";
+    }
+    if(name == ""){
+    }
+    else{
+      query+=" and name:\"" + name + "\"";
+    }
+    if(genre == ""){
+    }
+    else{
+      query+=" and genre:\"" + genre + "\"";
+    }
+    var rows = "";
+    if(rowString != ""){
+      rows = rowString;
+    }
+    else{
+      rows = "10"
+    }
+    if(year != ""){
+      query+= "and initial_release_date:["+year+"-01-01T00:00:00Z TO "+year+"-12-30T00:00:00Z]"
+    }
+  }
+  else{
+    var query = "";
+    if(director == ""){
+    }
+    else{
+      query+="directed_by:" + "*" + director +"*";
+    }
+    if(name == ""){
+    }
+    else{
+      query+=" and name:" + "*" + name + "*";
+    }
+    if(genre == ""){
+    }
+    else{
+      query+=" and genre:" + "*" + genre + "*";
+    }
+    var rows = "";
+    if(rowString != ""){
+      rows = rowString;
+    }
+    else{
+      rows = "10"
+    }
+    if(year != ""){
+      query+= "and initial_release_date:["+year+"-01-01T00:00:00Z TO "+year+"-12-30T00:00:00Z]"
+    }
+  }
+  window.open("http://localhost:8983/solr/tamilMovieVeen/select?fl=genre name initial_release_date directed_by&indent=on&q="+query+"&wt=json"+"&rows="+rows);
+}
+</script>
+<body>
+
+<h2>Tamil film Search</h2>
+  Exact match:<br>
+  <input type="checkbox" id="phrasal" name="phrasal" value="">
+  <br>
+  Name:<br>
+  <input type="text" id="name" name="Name" value="">
+  <br>
+  Director:<br>
+  <input type="text" id="director" name="Director" value=""><br>
+  Genre:<br>
+  <input type="text" id="genre" name="Genre" value="">
+  <br>
+  rows:<br>
+  <input type="text" id="rows" name="rows" value="">
+  <br><br>
+  <br>
+  Year:<br>
+  <input type="text" id="year" name="year" value="">
+  <br>
+  <input type="submit" value="Submit" onclick="myFunction()">
+<br>
+<p id="demo"></p>
+
+</body>
 </html>
+

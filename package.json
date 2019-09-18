@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build_dev": "webpack --mode development",
+    "build_dev": "webpack --mode development && node server.js",
     "build_prod": "webpack --mode production"
   },
   "repository": {
@@ -20,7 +20,9 @@
   },
   "homepage": "https://github.com/Tharsanan1/React_Node_franework#readme",
   "dependencies": {
+    "contentbinder": "^1.0.0",
     "express": "^4.16.4",
+    "multer": "^1.4.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },
